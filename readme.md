@@ -1,12 +1,12 @@
 # Este repositório tem como objetivo fazer parte da atividade PI-P021.
 
-## Grupo
+# Grupo
 
-Carlos André Dias (Ancião)
-Daniel Oliveira   (Junior)
-Leandro Garcia    (Junior)
-Lorena Andrade    (Pleno)
-Náthalie Lima     (Junior)
+# Carlos André Dias (Ancião)
+# Daniel Oliveira   (Junior)
+# Leandro Garcia    (Junior)
+# Lorena Andrade    (Pleno)
+# Náthalie Lima     (Junior)
 
 
 # Descrição
