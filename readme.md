@@ -1,5 +1,5 @@
 #Utilidade publica.
-
+//
 # Se deseja criar um novo arquivo não esqeuça de adcionar ao tasks.json para a copilação automatizada.
 
 # Use o BD.cpp para trabalhar com os arquivos não crie outro

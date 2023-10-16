@@ -1,6 +1,6 @@
 //usuario.h
 #pragma once
-
+//
 #include <iostream>
 #include <vector>
 using namespace std;

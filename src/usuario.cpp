@@ -1,5 +1,5 @@
 #include "usuario.h"
-
+//
 Usuario::Usuario(long matricula, const string &nome, const string &email, const vector<int> &registro_de_emprestimo)
 {
     this->matricula = matricula;

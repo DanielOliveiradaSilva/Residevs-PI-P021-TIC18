@@ -1,5 +1,5 @@
 #include "BD.h"
-
+//
 vector<Usuario> BD::CarregarDadosDeUsuarios(const string &url)
 {
     ifstream arquivo_entrada(url);

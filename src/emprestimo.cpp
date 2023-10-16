@@ -1,7 +1,7 @@
 #include "emprestimo.h"
 Emprestimo::Emprestimo(/* args */) {}
 
-// Construtor
+// Construtor//
 Emprestimo::Emprestimo(long matricula, const std::string &data_emprestimo, const std::vector<int> &codigo_livros_emprestado)
 {
     this->matricula = matricula;

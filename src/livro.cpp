@@ -1,5 +1,5 @@
 #include "livro.h"
-
+//
 Livro::Livro(long _id, string _titulo, string _autor, int _copias) {
     id = _id;
     titulo = _titulo;
