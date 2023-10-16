@@ -16,15 +16,18 @@ class Livro
         int copias;
 
     public:
-        Livro(string _titulo, string _autor, int _copias);
+        Livro(long id, string _titulo, string _autor, int _copias);
         Livro(/* args */);
         ~Livro();
-        long getId();
-        string getTitulo();
+        //metodos get
+        
+        long getId() const;
+        string getTitulo() const;
+        string getAutor() const;
+        int getCopias() const;
+        void setCodigo(long id);
         void setTitulo(string _titulo);
-        string getAutor();
         void setAutor(string _autor);
-        int getCopias();
         void setCopias(int _copias);
 };
 
