@@ -1,7 +1,6 @@
-#include "livro.h"
+#include "lib/Livro.h"
 
-Livro::Livro(long _id, string _titulo, string _autor, int _copias) {
-    id = _id;
+Livro::Livro(string _titulo, string _autor, int _copias) {
     titulo = _titulo;
     autor = _autor;
     copias = _copias;
@@ -15,31 +14,28 @@ Livro::~Livro()
 {
 }
 
-long Livro::getId() const {
+long Livro::getId() {
     return id;
 }
 
-string Livro::getAutor() const{
-    return autor;
-}
-
-string Livro::getTitulo() const{
+string Livro::getTitulo() {
     return titulo;
 }
 
-int Livro::getCopias() const{
-    return copias;
-}
-
-void Livro::setCodigo(long _id){
-    id = _id;
-}
 void Livro::setTitulo(string _titulo) {
     titulo = _titulo;
 }
 
+string Livro::getAutor() {
+    return autor;
+}
+
 void Livro::setAutor(string _autor) {
     autor = _autor;
+}
+
+int Livro::getCopias() {
+    return copias;
 }
 
 void Livro::setCopias(int _copias) {
