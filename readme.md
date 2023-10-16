@@ -1,13 +1,16 @@
-#Utilidade publica.
+# Este repositório tem como objetivo fazer parte da atividade PI-P021.
 
-# Se deseja criar um novo arquivo não esqeuça de adcionar ao tasks.json para a copilação automatizada.
+# Grupo
 
-# Use o BD.cpp para trabalhar com os arquivos não crie outro
+# Carlos André Dias (Ancião)
+# Daniel Oliveira   (Junior)
+# Leandro Garcia    (Junior)
+# Lorena Andrade    (Pleno)
+# Náthalie Lima     (Junior)
 
-#Para copilar os arquivos altomatiamente precione ctrl + shift +b e selecione a primeira opção que aparecer no topo.
 
-#Caso esteja no terminal utilize os comando
+# Descrição
 
-//cd build/
-// ./emprestimo onde está o executavel
-
+-Branch de desenvolvimento teste de funcionalidades, merges de funcionalidades e versão final do
+Sistema de controle de emprestimos  de livros de uma biblioteca.
+- feature/classe-livro
