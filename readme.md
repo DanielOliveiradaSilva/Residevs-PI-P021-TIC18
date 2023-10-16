@@ -11,3 +11,4 @@
 //cd build/
 // ./emprestimo onde está o executavel
 
+adicionar mais alguma coisa
