@@ -2,7 +2,7 @@
 Emprestimo::Emprestimo(/* args */) {}
 
 // Construtor
-Emprestimo::Emprestimo(long matricula, const std::string &data_emprestimo, const std::vector<int> &codigo_livros_emprestado)
+Emprestimo::Emprestimo(long matricula, const std::string &data_emprestimo, const std::vector<long> &codigo_livros_emprestado)
 {
     this->matricula = matricula;
     this->data_emprestimo = data_emprestimo;
@@ -25,7 +25,7 @@ string Emprestimo::getDataEmprestimo() const
     return data_emprestimo;
 }
 
-vector<int> Emprestimo::getCodigoLivrosEmprestado() const
+vector<long> Emprestimo::getCodigoLivrosEmprestado() const
 {
     return codigo_livros_emprestado;
 }
@@ -45,9 +45,9 @@ void Emprestimo::setDataEmprestimo(const string &data_emprestimo)
     this->data_emprestimo = data_emprestimo;
 }
 
-void Emprestimo::setCodigoLivrosEmprestado(const vector<int>codigo_livros_emprestado)
+void Emprestimo::setCodigoLivrosEmprestado(const long codigo_livros_emprestado)
 {
-    this->codigo_livros_emprestado =codigo_livros_emprestado;
+    this->codigo_livros_emprestado.push_back(codigo_livros_emprestado);
 }
 
 Emprestimo::~Emprestimo() {}

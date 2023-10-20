@@ -28,4 +28,6 @@ public:
     void setTitulo(const string &titulo);
     void setAutor(const string &autor);
     void setCopias(int copias);
+    bool emprestarLivro(); //decrementa copias
+    void devolverLivro(); //incrementa copias
 };

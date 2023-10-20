@@ -44,3 +44,14 @@ void Livro::setAutor(const string &_autor) {
 void Livro::setCopias(int _copias) {
     copias = _copias;
 }
+bool Livro::emprestarLivro() {
+    if (copias > 0) {
+        copias--;
+        return true;
+    }
+    return false;
+}
+
+void Livro::devolverLivro() {
+    copias++;
+}

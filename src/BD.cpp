@@ -1,9 +1,8 @@
 #include "BD.h"
 
-vector<Usuario> BD::CarregarDadosDeUsuarios(const string &url)
+void BD::CarregarDadosDeUsuarios()
 {
-    ifstream arquivo_entrada(url);
-    vector<Usuario> alunos;
+    ifstream arquivo_entrada("../BD/usuarios.txt");
 
     if (arquivo_entrada.is_open())
     {
@@ -30,7 +29,7 @@ vector<Usuario> BD::CarregarDadosDeUsuarios(const string &url)
                 aluno.setRegistroDeEmprestimo(stoi(codigo_de_emprestimo));
             }
 
-            alunos.push_back(aluno);
+            dados_dos_usuarios.push_back(aluno);
         }
         arquivo_entrada.close();
     }
@@ -38,15 +37,14 @@ vector<Usuario> BD::CarregarDadosDeUsuarios(const string &url)
     {
         cout << "Erro ao abrir o arquivo" << endl;
     }
-    return alunos;
 }
 
-void BD::SalvarDadosDeUsuarios(const string &url, const vector<Usuario> &dados)
+void BD::SalvarDadosDeUsuarios()
 {
-    ofstream arquivo_saida(url);
+    ofstream arquivo_saida("../BD/usuarios.txt");
     if (arquivo_saida.is_open())
     {
-        for (const Usuario &usuario : dados)
+        for (const Usuario &usuario : dados_dos_usuarios)
         {
             arquivo_saida << usuario.getMatricula() << ","
                           << usuario.getNome() << ","
@@ -70,10 +68,9 @@ void BD::SalvarDadosDeUsuarios(const string &url, const vector<Usuario> &dados)
     }
 }
 
-vector<Livro> BD::CarregarDadosDeLivros(const string &url)
+void BD::CarregarDadosDeLivros()
 {
-    ifstream arquivo_entrada(url);
-    vector<Livro> livros;
+    ifstream arquivo_entrada("../BD/livros.txt");
 
     if (arquivo_entrada.is_open())
     {
@@ -97,7 +94,7 @@ vector<Livro> BD::CarregarDadosDeLivros(const string &url)
 
             getline(iss, copias, ',');
             livro.setCopias(stoi(copias));
-            livros.push_back(livro);
+            dados_de_livros.push_back(livro);
         }
         arquivo_entrada.close();
     }
@@ -105,12 +102,11 @@ vector<Livro> BD::CarregarDadosDeLivros(const string &url)
     {
         cout << "Erro ao abrir o arquivo" << endl;
     }
-    return livros;
 }
 
-vector<Emprestimo> BD::CarregarDadosDeEmprestimos(const string &url)
+void BD::CarregarDadosDeEmprestimos()
 {
-    ifstream arquivo_entrada(url);
+    ifstream arquivo_entrada("../BD/emprestimos.txt");
     vector<Emprestimo> dados_de_emprestimos;
 
     if (arquivo_entrada.is_open())
@@ -150,14 +146,14 @@ vector<Emprestimo> BD::CarregarDadosDeEmprestimos(const string &url)
             }
 
             string codigo_do_livro;
-            vector<int> codigosLivros; // Vetor para armazenar os códigos dos livros
+            vector<long> codigosLivros; // Vetor para armazenar os códigos dos livros
 
             while (getline(iss, codigo_do_livro, ','))
             {
                 try
                 {
-                    int codigo = stoi(codigo_do_livro);
-                    codigosLivros.push_back(codigo); // Adicione o código ao vetor
+                    long codigo = stoul(codigo_do_livro);
+                    emprestimo.setCodigoLivrosEmprestado(codigo);
                 }
                 catch (const std::invalid_argument &e)
                 {
@@ -167,7 +163,6 @@ vector<Emprestimo> BD::CarregarDadosDeEmprestimos(const string &url)
             }
 
             // Defina os códigos dos livros no objeto "emprestimo" após o loop
-            emprestimo.setCodigoLivrosEmprestado(codigosLivros);
             dados_de_emprestimos.push_back(emprestimo);
         }
         arquivo_entrada.close();
@@ -176,13 +171,45 @@ vector<Emprestimo> BD::CarregarDadosDeEmprestimos(const string &url)
     {
         cout << "Erro ao abrir o arquivo" << endl;
     }
-    return dados_de_emprestimos;
 }
 
-void BD::ListarUsuario(vector<Usuario> usuarios)
+ void BD::SalvarDadosDeEmprestimo()
+{
+    ofstream arquivo_saida("../BD/emprestimos.txt");
+    
+    if (arquivo_saida.is_open())
+    {
+        for (const Emprestimo& emprestimo : dados_de_emprestimos)
+        {
+            arquivo_saida << emprestimo.getID() << ','
+                         << emprestimo.getMatricula() << ','
+                         << emprestimo.getDataEmprestimo() << ',';
+
+            const vector<long>& codigosLivros = emprestimo.getCodigoLivrosEmprestado();
+            for (size_t i = 0; i < codigosLivros.size(); i++)
+            {
+                arquivo_saida << codigosLivros[i];
+                if (i < codigosLivros.size() - 1)
+                {
+                    arquivo_saida << ',';
+                }
+            }
+
+            arquivo_saida << '\n'; // Pule para a próxima linha para o próximo empréstimo
+        }
+        arquivo_saida.close();
+        cout << "Dados de empréstimos salvos com sucesso." << endl;
+    }
+    else
+    {
+        cerr << "Erro ao abrir o arquivo para escrita" << endl;
+    }
+}
+
+void BD::ListarUsuario()
 {
 
-    for (Usuario &usuario : usuarios)
+    for (Usuario &usuario : dados_dos_usuarios)
     {
         cout << "Matrícula: " << usuario.getMatricula() << endl;
         cout << "Nome: " << usuario.getNome() << endl;
@@ -198,10 +225,10 @@ void BD::ListarUsuario(vector<Usuario> usuarios)
     }
 }
 
-void BD::ListarLivros(vector<Livro> livros)
+void BD::ListarLivros()
 {
 
-    for (Livro &livro : livros)
+    for (Livro &livro : dados_de_livros)
     {
         cout << "Codigo: " << livro.getId() << endl;
         cout << "Titulo " << livro.getTitulo() << endl;
@@ -212,10 +239,10 @@ void BD::ListarLivros(vector<Livro> livros)
     }
 }
 
-void BD::ListarEmprestimos(vector<Emprestimo> emprestimos)
+void BD::ListarEmprestimos()
 {
 
-    for (Emprestimo &emprestimo : emprestimos)
+    for (Emprestimo &emprestimo : dados_de_emprestimos)
     {
         cout << "Codigo: " << emprestimo.getID() << endl;
         cout << "Matricula " << emprestimo.getMatricula() << endl;
@@ -230,4 +257,44 @@ void BD::ListarEmprestimos(vector<Emprestimo> emprestimos)
         cout << endl;
         cout << "---------------------------------" << endl;
     }
+}
+
+void BD :: RegistrarEmprestimo(Usuario& usuario, vector<Livro>& livros, const string& data_emprestimo) {
+   for (auto& livro : livros)
+   {
+        Emprestimo emprestimo;
+        emprestimo.setMatricula(usuario.getMatricula());
+        emprestimo.setDataEmprestimo(data_emprestimo);
+        emprestimo.setCodigoLivrosEmprestado(livro.getId());
+            
+        livro.emprestarLivro();
+        usuario.setRegistroDeEmprestimo(emprestimo.getID());
+        dados_de_emprestimos.push_back(emprestimo);
+   }
+    BD :: SalvarDadosDeEmprestimo();
+    
+}
+// Função para localizar um usuário por matrícula
+Usuario* BD :: localizarUsuarioPorMatricula(long matricula)
+{
+    for (Usuario& usuario : dados_dos_usuarios)
+    {
+        if (usuario.getMatricula() == matricula)
+        {
+            return &usuario;
+        }
+    }
+    return nullptr; // Retorna nullptr se o usuário não for encontrado
+}
+// Função para localizar um livro por título
+Livro BD :: localizarLivroPorID(long id)
+{
+    for (Livro& livro : dados_de_livros)
+    {
+        if (livro.getId() == id)
+        {
+            return livro;
+        }
+    }
+    return {}; // Retorna nullptr se o livro não for encontrado
 }

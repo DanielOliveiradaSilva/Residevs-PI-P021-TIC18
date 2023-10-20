@@ -12,23 +12,29 @@
 using namespace std;
 class BD
 {
-private:
-    static vector<Usuario> dados_dos_usuarios;
-
 public:
+     vector<Usuario> dados_dos_usuarios;
+     vector<Livro> dados_de_livros;
+     vector<Emprestimo> dados_de_emprestimos;
+
     BD() {} // Inicializar o vetor de dados de usuários, se necessário.
 
     ~BD() {} // Limpar os recursos, se necessário.
-    static vector<Usuario> CarregarDadosDeUsuarios(const string &url);
-    static void SalvarDadosDeUsuarios(const string &url, const vector<Usuario> &dados);
+    
+     void CarregarDadosDeUsuarios();
+     void SalvarDadosDeUsuarios();
 
-    static vector<Livro> CarregarDadosDeLivros(const string &url);
-    static void SalvarDadosDeLivros(const string &url, const vector<Usuario> &dados);
+     void CarregarDadosDeLivros();
+     void SalvarDadosDeLivros();
 
-    static vector<Emprestimo> CarregarDadosDeEmprestimos(const string &url);
+     void CarregarDadosDeEmprestimos();
+     void SalvarDadosDeEmprestimo();
 
-    static void ListarUsuario(vector<Usuario> usuarios);
-    static void ListarLivros(vector<Livro> livros);
-    static void ListarEmprestimos(vector<Emprestimo> emprestimos);
+     void ListarUsuario();
+     void ListarLivros();
+     void ListarEmprestimos();
+     void RegistrarEmprestimo(Usuario& usuario,  vector<Livro>& livros, const string& data_emprestimo);
+     Usuario* localizarUsuarioPorMatricula(long matricula);
+     Livro* localizarLivroPorTitulo(const string& titulo)
 };
 
