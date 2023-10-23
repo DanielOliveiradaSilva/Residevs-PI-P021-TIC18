@@ -11,6 +11,6 @@ Daniel Oliveira
 
 Para rodar o programa, execute no terminal:
 
-g++ -o Biblioteca ctrl_biblioteca.cpp emprestimo.cpp interface.cpp livro.cpp main.cpp usuario.cpp -I./include
+g++ -o Biblioteca data.cpp ctrl_biblioteca.cpp emprestimo.cpp interface.cpp livro.cpp main.cpp usuario.cpp -I./include
 
 :)
